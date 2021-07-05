@@ -30,10 +30,8 @@ userController.register = async function (req, res) {
   try {
     var hashedPass = bcrypt.hashSync(req.body.password, 8);
     req.body.password = hashedPass;
-    var type = await UserType.findOne({ type: req.body.type });
-    req.body.type = type;
     var user = await new User(req.body).save();
-
+    console.log(user)
     if (user != null) {
       var token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
       res.status(200).jsonp({ user: user, token: token });
@@ -45,7 +43,7 @@ userController.register = async function (req, res) {
 
 userController.login = async function (req, res) {
   try {
-    var user = await User.findOne({ email: req.body.email }).populate("type");
+    var user = await User.findOne({ email: req.body.email });
 
     if (user == null)
       res(404).jsonp({});

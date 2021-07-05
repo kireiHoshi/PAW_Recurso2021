@@ -21,7 +21,7 @@ mongoose.set("useFindAndModify", false);
 
 mongoose
   .connect(
-    "mongodb://localhost:27017/",
+    "mongodb://localhost:27017/recurso",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
