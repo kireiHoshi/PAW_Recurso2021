@@ -35,11 +35,17 @@ export class ProfileComponent implements OnInit {
     
   }
 
-  delete(user: any): void {
+  delete(id: string): void {
     if (confirm(`${this.name}, do you wish to delete your account?`)) {
-      this.userService.deleteUser(this.id).subscribe((res: any) => {
+      this.userService.deleteUser(this.id)
+      .subscribe((res: any) => {
         this.authentication.logout();
         this.router.navigate(['/homepage']);
+      },
+      err => {
+        console.log(err);
+        alert('This user has created locations!')
+       // check error status code is 500, if so, do some action
       })
     }
   } 

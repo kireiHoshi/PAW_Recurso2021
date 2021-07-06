@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-comments',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
 
+  @Input() comments: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

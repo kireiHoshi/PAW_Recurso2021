@@ -1,1 +1,12 @@
-<p>profile-form works!</p>
+
+<form ngNativeValidate [formGroup]="form" (submit)="edit()" class="form-register">
+    <h1 class="h3 mb-3 font-weight-normal">Edit Profile</h1>
+
+    <input formControlName="name" type="name" id="inputName" class="form-control" placeholder="Name" autofocus>
+
+    <input formControlName="newPassword" type="text" id="inputNewPassword" class="form-control" placeholder="New password">
+
+    <input formControlName="oldPassword" type="text" id="inputOldPassword" class="form-control" placeholder="Old Password" >
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Confirm</button>
+</form>

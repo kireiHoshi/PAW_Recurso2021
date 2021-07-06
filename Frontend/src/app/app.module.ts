@@ -21,6 +21,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { LocationFormComponent } from './components/location-form/location-form.component';
 import { LocationsComponent } from './components/locations/locations.component';
+import { LocationInfoEditComponent } from './components/location-info-edit/location-info-edit.component';
+import { CommentCreateComponent } from './components/comment-create/comment-create.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { LocationsComponent } from './components/locations/locations.component';
     HomepageComponent,
     ProfileFormComponent,
     LocationFormComponent,
-    LocationsComponent
+    LocationsComponent,
+    LocationInfoEditComponent,
+    CommentCreateComponent
   ],
   imports: [
     BrowserModule,

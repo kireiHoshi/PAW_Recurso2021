@@ -14,18 +14,20 @@ export class ProfileFormComponent implements OnInit {
 
   form: FormGroup;
   id: string;
+  user: any;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router) {
+      this.user = JSON.parse(localStorage.getItem('currentUser') || 'N/A');
+      this.id = this.user._id;
 
-    this.form = this.formBuilder.group({
-      name: '',
-      email: '',
-      password: '',
-      newpassword: ''
-    })
+      this.form = this.formBuilder.group({
+        name: this.user.name,
+        oldPassword: '',
+        newPassword: ''
+      })
   }
 
   ngOnInit(): void { }
@@ -33,7 +35,8 @@ export class ProfileFormComponent implements OnInit {
   edit(): void {
     console.log(this.form.getRawValue());
     this.userService.editProfile(this.id,this.form).subscribe((res: any) => {
-      window.location.reload();
+      localStorage.setItem('currentUser', res.user);
+      this.router.navigate(['/profile']);
     })
   }
 

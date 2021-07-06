@@ -10,12 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 export class LocationInfoComponent implements OnInit {
 
   location: any;
+  user: any;
   name: string = '';
   description: string = '';
   photo: string = '';
   comments: any;
-  likes: number;
-  dislikes: number;
+  likes: any;
+  dislikes: any;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -23,8 +24,10 @@ export class LocationInfoComponent implements OnInit {
     var id;
     this.route.params.subscribe( params =>
       id = params['id']
-  )
-  console.log(id)
+    )
+
+    this.user = JSON.parse(localStorage.getItem('currentUser') || 'N/A');
+
     this.http.get('http://localhost:4200/api/locations/' + id)
       .subscribe((res: any) => {
         this.location = res.location;
@@ -35,6 +38,12 @@ export class LocationInfoComponent implements OnInit {
         this.dislikes = this.location.dislikes;
       })
     
+  }
+
+  negativeRatio(): boolean  {
+
+    return(this.likes<this.dislikes)
+
   }
 
 }

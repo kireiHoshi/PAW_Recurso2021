@@ -27,7 +27,8 @@ export class LocationsComponent implements OnInit {
     public authentication: AuthenticationService,
     private formBuilder: FormBuilder,) {
 
-      let user = JSON.parse(localStorage.getItem('currentUser') || 'N/A');
+      this.user = JSON.parse(localStorage.getItem('currentUser') || 'N/A');
+      
 
       this.route.queryParams.subscribe((params: any) => {
         this.query = params;
@@ -35,13 +36,14 @@ export class LocationsComponent implements OnInit {
       })
 
       this.form = this.formBuilder.group({
-        author: user._id,
+        author: this.user._id,
         name: '',
         address: '',
         region: '',
         photo:'',
         description: ''
       })
+      
      }
 
   ngOnInit(): void {
@@ -49,14 +51,25 @@ export class LocationsComponent implements OnInit {
     this.http.get('http://localhost:4200/api/locations', { params: params })
       .subscribe((res: any) => {
         this.locations = res.locations;
+        console.log(this.locations)
       })
   }
 
-  edit(location: any) {
-    let id: string = location._id;
-    this.locationService.editLocation(id, this.form).subscribe((result) => { 
-      this.router.navigate(['http://localhost:4200/api/locations']); }
-      ); 
+  hideBadLocation(likes:any, dislikes:any): boolean {
+
+    if(likes.length == 0 && dislikes.length == 0) {
+      return true;
+    }
+
+    if(likes.length > 0 && dislikes == 0) {
+      return true;
+    }
+    
+    if((likes.length/dislikes.length) > 0.5) {
+      return true;
+    }
+
+    return false;
   }
 
   delete(location: any): void {

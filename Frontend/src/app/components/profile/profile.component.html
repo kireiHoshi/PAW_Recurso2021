@@ -4,26 +4,10 @@
 <p>Email: {{email}}</p>
 
 <div>
-    <button class="btn btn-warning mr-1" >Edit Profile</button>
+    <button class="btn btn-warning mr-1" [routerLink]="['../profileform', id]">Edit Profile</button>
     <button class="btn btn-danger mr-1" (click)="delete(id)">Delete Account</button>
 </div> 
 
 <div>
     <a class="btn btn-success" routerLink="/locations" [queryParams]="{author: id}">See Posts</a>
 </div>
-
-
-<!-- 
-
-    <input [(ngModel)]="id" formControlName="id" type="text" id="inputId" class="form-control" disabled>
-
-    <input value="{{name}}" formControlName="name" type="name" id="inputName" class="form-control" placeholder="Name" required>
-
-    <input value="{{email}}" formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
-    
-    <input value="{{password}}" formControlName="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus>
-
-    
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
-</form> 
- -->

@@ -1,0 +1,22 @@
+<form
+  ngNativeValidate
+  [formGroup]="form"
+  (submit)="createComment()"
+  class="form-register"
+>
+<h1 class="h3 mb-3 font-weight-normal">Write a comment</h1>
+
+<input
+    formControlName="text"
+    type="text"
+    id="inputText"
+    class="form-control"
+    placeholder="What's your opinion..."
+    autofocus
+  />
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">
+    Post!
+  </button>
+
+  </form>

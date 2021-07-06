@@ -9,6 +9,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { LocationInfoEditComponent } from './components/location-info-edit/location-info-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -17,8 +19,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'locations', component: LocationsComponent },
+  { path: 'locationedit/:id', component: LocationInfoEditComponent },
   { path: 'location-info/:id', component: LocationInfoComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'profileform/:id', component: ProfileFormComponent },
   { path: '**', component: PagenotfoundComponent }
 ];
 

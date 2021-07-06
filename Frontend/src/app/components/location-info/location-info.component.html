@@ -1,7 +1,12 @@
-
-        <img src="{{photo}}" class="card-img-top" alt="...">
-        <div >
-            <h2 >{{name}}</h2>
-            <p >{{description}}</p>
-        </div>
+<img src="{{photo}}" class="card-img-top" alt="...">
+<div >
+    <h2 >{{name}}</h2>
+    <h2 *ngIf="negativeRatio()" style="color: red;">Bad location....</h2>
+    <p >Description: {{description}}</p>
+    <div *ngIf="(likes.length >= 0) && (dislikes.length >= 0) && (location)">
+    <app-likedislike [likes]="likes" [dislikes]="dislikes" [location]="location" ></app-likedislike>
+    <app-comment-create [location]="location._id" [user]="user._id"></app-comment-create>
+    <app-comments [comments]="location.comments"></app-comments>
+    </div>
+</div>
 

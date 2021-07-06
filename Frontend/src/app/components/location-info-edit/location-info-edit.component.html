@@ -1,0 +1,54 @@
+<form
+  ngNativeValidate
+  [formGroup]="form"
+  (submit)="edit()"
+  class="form-register"
+>
+  <h1 class="h3 mb-3 font-weight-normal">Edit Location</h1>
+
+  <input
+    formControlName="name"
+    type="name"
+    id="inputName"
+    class="form-control"
+    placeholder="Name"
+    autofocus
+  />
+
+  <input
+    formControlName="address"
+    type="text"
+    id="inputAddress"
+    class="form-control"
+    placeholder="New address"
+  />
+  
+  <select formControlName="region" class="custom-select">
+    <option disabled selected="selected">--Region--</option>
+    <option *ngFor="let region of regions; index as i" value="{{ region._id }}">
+      {{ region.name }}
+    </option>
+  </select>
+
+  <input
+    formControlName="photo"
+    type="text"
+    id="inputPhoto"
+    class="form-control"
+    placeholder="New Photo"
+  />
+
+  <input
+    formControlName="description"
+    type="text"
+    id="inputDescription"
+    class="form-control"
+    placeholder="New Description"
+  />
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">
+    Confirm
+  </button>
+</form>
+
+

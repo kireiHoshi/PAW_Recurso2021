@@ -1,39 +1,59 @@
 <div *ngIf="this.authentication.userLogged()">
-    <div class="text-align-center mb-5">
-        <button class="btn btn-success" data-toggle="modal" data-target="#locationModal">Create Location</button>
-      </div>
+  <div class="text-align-center mb-5">
+    <button
+      class="btn btn-success"
+      data-toggle="modal"
+      data-target="#locationModal"
+    >
+      Create Location
+    </button>
+  </div>
 
-    
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Region</th>
-            <th scope="col">Like/Dislikes</th>
-            <th scope="col">Author</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let location of locations">
-            <td>{{ location.name }}</td>
-            <td>{{ location.address }}</td>
-            <td>{{ location.region.name }}</td>
-            <td>{{ location.likes }} / {{ location.dislikes }}</td>
-            <td>{{ location.author.name }}</td>
-            <td><a href="http://localhost:4200/location-info/{{location._id}}">Check it out!</a></td>
-            
-            <td ng-show="currentUser._id == location.author._id">
-             
-                <button class="btn btn-warning mr-1" (click)="edit(location)">Edit</button>
-                <button class="btn btn-danger mr-1" (click)="delete(location)">Delete</button>
-              
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Region</th>
+        <th scope="col">Like/Dislikes</th>
+        <th scope="col">Author</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let location of locations">
+        <td>{{ location.name }}</td>
+        <td>{{ location.address }}</td>
+        <td>{{ location.region.name }}</td>
+        <td>
+          {{ location.likes.length }} / {{ location.dislikes.length }} (ratio:
+          {{
+            location.likes.length == 0 && location.dislikes.length == 0
+              ? 1
+              : (location.likes.length / location.dislikes.length).toFixed(1)
+          }})
+        </td>
+        <td>{{ location.author.name }}</td>
+        <td>
+          <a href="http://localhost:4200/location-info/{{ location._id }}"
+            >Check it out!</a
+          >
+        </td>
 
-      <app-location-form></app-location-form>
-    
+        <td *ngIf="user._id == location.author._id">
+          <button
+            class="btn btn-warning mr-1"
+            [routerLink]="['../locationedit', location._id]"
+          >
+            Edit
+          </button>
+          <button class="btn btn-danger mr-1" (click)="delete(location)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-location-form></app-location-form>

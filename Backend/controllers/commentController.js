@@ -1,4 +1,5 @@
 var Comment = require("../models/comment");
+var Location = require("../models/location");
 
 var commentController = {};
 
@@ -23,7 +24,14 @@ commentController.show = async function (req, res) {
 
 commentController.create = async function (req, res) {
   try {
+    console.log('cheguei')
     var comment = await Comment.create(req.body);
+    var location = await Location.findOne({_id: req.body.location});
+    console.log('encontrei')
+    location.comments.push(comment._id)
+    console.log('empurrei')
+    location.save();
+    console.log('gravei')
     res.status(200).jsonp({ comment: comment });
   } catch (error) {
     res.status(500).jsonp({ message: "Error creating comment", error: error });

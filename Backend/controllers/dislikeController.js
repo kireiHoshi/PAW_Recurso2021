@@ -1,4 +1,5 @@
 var Dislike = require("../models/dislike");
+var Location = require("../models/location");
 
 var dislikeController = {};
 
@@ -24,6 +25,9 @@ dislikeController.show = async function (req, res) {
 dislikeController.create = async function (req, res) {
   try {
     var dislike = await Dislike.create(req.body);
+    var location = await Location.findOne({_id: req.body.location});
+    location.dislikes.push(dislike._id)
+    location.save()
     res.status(200).jsonp({ dislike: dislike });
   } catch (error) {
     res.status(500).jsonp({ message: "Error creating dislike", error: error });

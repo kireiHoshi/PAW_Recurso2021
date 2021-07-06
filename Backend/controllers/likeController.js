@@ -1,4 +1,5 @@
 var Like = require("../models/like");
+var Location = require("../models/location");
 
 var likeController = {};
 
@@ -24,6 +25,9 @@ likeController.show = async function (req, res) {
 likeController.create = async function (req, res) {
   try {
     var like = await Like.create(req.body);
+    var location = await Location.findOne({_id: req.body.location});
+    location.likes.push(like._id)
+    location.save();
     res.status(200).jsonp({ like: like });
   } catch (error) {
     res.status(500).jsonp({ message: "Error creating like", error: error });
