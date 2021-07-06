@@ -8,11 +8,12 @@ var LocationSchema = new mongoose.Schema({
     description: { type: String, required: true },
     photo: { type: String, required: true },
     region: { type: Schema.Types.ObjectId, ref: "Region", required: true },
-    likes: [{ type: Schema.Types.ObjectId, ref: "Like", required: true }],
-    dislikes: [{ type: Schema.Types.ObjectId, ref: "Dislike", required: true }],
-    comments: [{ type: Schema.Types.ObjectId, ref: "Comment", required: true }],
-    latitude: { type: Number, required: true },
-    longitude: { type: Number, required: true },
+    likes: [{ type: Schema.Types.ObjectId, ref: "Like", default: 0 }],
+    dislikes: [{ type: Schema.Types.ObjectId, ref: "Dislike", default: 0 }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment "}],
+    latitude: { type: Number },
+    longitude: { type: Number },
+    visibility: { type: Boolean, default: false }
 });
 
 

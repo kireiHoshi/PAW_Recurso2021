@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth-guard.guard';
-import { LocationComponent } from './components/location/location.component';
+import { LocationsComponent } from './components/locations/locations.component';
+import { LocationInfoComponent } from './components/location-info/location-info.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'locations', component: LocationComponent },
+  { path: 'locations', component: LocationsComponent },
+  { path: 'location-info/:id', component: LocationInfoComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '**', component: PagenotfoundComponent }
 ];

@@ -4,7 +4,7 @@ var regionController = {};
 
 regionController.showAll = async function (req, res) {
   try {
-    var regions = await Location.find();
+    var regions = await Region.find();
     res.status(200).jsonp({ regions: regions });
   } catch (error) {
     res.status(500).jsonp({ message: "Error showing all regions", error: error, });

@@ -72,11 +72,6 @@ userController.logout = function (req, res) {
 userController.edit = async function (req, res) {
   try {
     var id = req.params.id;
-    var types;
-    if (req.body.type) {
-      type = await UserType.findOne({ type: req.body.type });
-      req.body.type = type;
-    }
     var user = await User.findOneAndUpdate({ _id: id }, body);
     if (!user)
       res.status(404).jsonp({});

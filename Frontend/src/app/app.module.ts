@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+//import { GoogleMapsModule } from '@angular/google-maps'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './interceptors/auth-interceptor.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LocationComponent } from './components/location/location.component';
 import { LocationInfoComponent } from './components/location-info/location-info.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LikedislikeComponent } from './components/likedislike/likedislike.component';
@@ -18,12 +18,14 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { HomeComponent } from './components/home/home.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { LocationFormComponent } from './components/location-form/location-form.component';
+import { LocationsComponent } from './components/locations/locations.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LocationComponent,
     LocationInfoComponent,
     NavbarComponent,
     LikedislikeComponent,
@@ -34,7 +36,10 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     ProfileComponent,
     PagenotfoundComponent,
     HomeComponent,
-    HomepageComponent
+    HomepageComponent,
+    ProfileFormComponent,
+    LocationFormComponent,
+    LocationsComponent
   ],
   imports: [
     BrowserModule,

@@ -29,8 +29,6 @@ export class LoginComponent implements OnInit {
     
     this.authentication.login(email, password).subscribe((res: any) => {
       if (res.user && res.token) {
-        console.log(res.token)
-        console.log(res.user)
         localStorage.setItem('token', res.token)
         localStorage.setItem('currentUser', JSON.stringify(res.user));
       }
