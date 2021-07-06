@@ -21,7 +21,8 @@
       </tr>
     </thead>
     <tbody >
-      <tr *ngFor="let location of locations">
+      <ng-container *ngFor="let location of locations">
+        <tr *ngIf="hideBadLocation(location.likes, location.dislikes)">
         <td>{{ location.name }}</td>
         <td>{{ location.address }}</td>
         <td>{{ location.region.name }}</td>
@@ -52,6 +53,7 @@
           </button>
         </td>
       </tr>
+    </ng-container>
     </tbody>
   </table>
 </div>
